@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pixels_app/splash/presentation/view/splash_view.dart';
+import 'package:pixels_app/core/utils/app_router.dart';
 
 void main() {
   runApp(const PixelsApp());
@@ -10,7 +10,9 @@ class PixelsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: SplashView());
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
