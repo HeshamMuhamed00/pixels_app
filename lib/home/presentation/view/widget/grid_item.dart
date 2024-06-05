@@ -10,7 +10,6 @@ class GridItem extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: Colors.redAccent,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),

@@ -7,12 +7,12 @@ class CustomGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 4.1 / 9,
+    return Padding(
+      padding: const EdgeInsets.only(left: 6, right: 6),
       child: GridView.custom(
         gridDelegate: SliverWovenGridDelegate.count(
             mainAxisSpacing: 0,
-            crossAxisSpacing: 0,
+            crossAxisSpacing: 10,
             pattern: [
               const WovenGridTile(0.8),
               const WovenGridTile(
