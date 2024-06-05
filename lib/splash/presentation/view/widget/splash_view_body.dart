@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -33,6 +34,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
     //add delay till video is complite
     await Future.delayed(const Duration(seconds: 6));
+    GoRouter.of(context).push('/homeView');
 
     // navigating to home screen
   }
