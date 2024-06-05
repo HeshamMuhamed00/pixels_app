@@ -7,18 +7,27 @@ class CustomGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.custom(
-      gridDelegate: SliverWovenGridDelegate.count(pattern: [
-        const WovenGridTile(1),
-        const WovenGridTile(
-          5 / 7,
-          crossAxisRatio: 0.9,
-          alignment: AlignmentDirectional.centerEnd,
+    return AspectRatio(
+      aspectRatio: 4.1 / 9,
+      child: GridView.custom(
+        gridDelegate: SliverWovenGridDelegate.count(
+            mainAxisSpacing: 0,
+            crossAxisSpacing: 0,
+            pattern: [
+              const WovenGridTile(0.8),
+              const WovenGridTile(
+                10 / 15,
+                crossAxisRatio: 1,
+                alignment: AlignmentDirectional.centerEnd,
+              ),
+            ],
+            crossAxisCount: 2),
+        childrenDelegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return const GridItem();
+          },
         ),
-      ], crossAxisCount: 2),
-      childrenDelegate: SliverChildBuilderDelegate((context, index) {
-        return const GridItem();
-      }),
+      ),
     );
   }
 }

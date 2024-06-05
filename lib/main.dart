@@ -1,8 +1,14 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:pixels_app/core/utils/app_router.dart';
 
 void main() {
-  runApp(const PixelsApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const PixelsApp(),
+    ),
+  );
 }
 
 class PixelsApp extends StatelessWidget {
@@ -11,6 +17,8 @@ class PixelsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
     );
