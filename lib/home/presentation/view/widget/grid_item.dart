@@ -7,8 +7,20 @@ class GridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Image(
-      image: AssetImage('assets/pexels.jpg'),
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+        color: Colors.redAccent,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: const FittedBox(
+          fit: BoxFit.fill,
+          child: Image(
+            image: AssetImage('assets/pexels.jpg'),
+          ),
+        ),
+      ),
     );
   }
 }
