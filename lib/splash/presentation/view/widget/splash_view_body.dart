@@ -33,7 +33,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     _controller.play();
 
     //add delay till video is complite
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 6));
     GoRouter.of(context).push('/homeView');
 
     // navigating to home screen

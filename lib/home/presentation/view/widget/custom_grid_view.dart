@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pixels_app/home/presentation/view/widget/grid_item.dart';
+import 'package:pixels_app/home/presentation/view/widget/image_details.dart';
 
 class CustomGridView extends StatelessWidget {
   const CustomGridView({super.key});
@@ -24,7 +28,12 @@ class CustomGridView extends StatelessWidget {
             crossAxisCount: 2),
         childrenDelegate: SliverChildBuilderDelegate(
           (context, index) {
-            return const GridItem();
+            return GestureDetector(
+                onTap: () {
+                  // GoRouter.of(context).push('/imageDetails');
+                  Get.to(() => const ImageDetails());
+                },
+                child: const GridItem());
           },
         ),
       ),
