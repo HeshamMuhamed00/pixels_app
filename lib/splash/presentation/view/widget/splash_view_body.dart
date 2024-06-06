@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:video_player/video_player.dart';
+import 'package:pixels_app/home/presentation/view/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
-  const SplashViewBody({Key? key}) : super(key: key);
+  const SplashViewBody({super.key});
 
   @override
-  _SplashViewBodyState createState() => _SplashViewBodyState();
+  SplashViewBodyState createState() => SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> {
-  // video controller
+class SplashViewBodyState extends State<SplashViewBody> {
   late VideoPlayerController _controller;
 
   @override
@@ -29,14 +29,24 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void _playVideo() async {
-    // playing video
     _controller.play();
-
-    //add delay till video is complite
     await Future.delayed(const Duration(seconds: 6));
-    GoRouter.of(context).push('/homeView');
+    if (mounted) {
+      Navigator.push(
+        context,
+        navigateToHome(),
+      );
+    }
+  }
 
-    // navigating to home screen
+  PageTransition<dynamic> navigateToHome() {
+    return PageTransition(
+      duration: const Duration(milliseconds: 300),
+      type: PageTransitionType.bottomToTopJoined,
+      childCurrent:
+          this.build(context), // Using the current widget's build method
+      child: const HomeView(),
+    );
   }
 
   @override
@@ -53,9 +63,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         child: _controller.value.isInitialized
             ? AspectRatio(
                 aspectRatio: _controller.value.aspectRatio,
-                child: VideoPlayer(
-                  _controller,
-                ),
+                child: VideoPlayer(_controller),
               )
             : Container(),
       ),

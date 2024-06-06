@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:go_router/go_router.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pixels_app/home/presentation/view/widget/grid_item.dart';
 import 'package:pixels_app/home/presentation/view/widget/image_details.dart';
 
@@ -30,8 +28,17 @@ class CustomGridView extends StatelessWidget {
           (context, index) {
             return GestureDetector(
                 onTap: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      duration: const Duration(milliseconds: 250),
+                      type: PageTransitionType.scale,
+                      alignment: Alignment.bottomLeft,
+                      child: const ImageDetails(),
+                    ),
+                  );
+
                   // GoRouter.of(context).push('/imageDetails');
-                  Get.to(() => const ImageDetails());
                 },
                 child: const GridItem());
           },
