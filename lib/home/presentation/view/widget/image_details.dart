@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:pixels_app/home/presentation/view/widget/arrow_back_image_details.dart';
 
 class ImageDetails extends StatelessWidget {
   const ImageDetails({super.key});
@@ -6,11 +8,22 @@ class ImageDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox.expand(
-        child: Image.asset(
-          'assets/pexels.jpg',
-          fit: BoxFit.cover,
-        ),
+      body: Column(
+        children: [
+          Stack(
+            children: [
+              SizedBox.expand(
+                child: Image.asset(
+                  'assets/pexels.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SafeArea(
+                child: ArrowBackImageDetails(),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
