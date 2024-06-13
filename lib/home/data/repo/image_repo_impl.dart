@@ -32,7 +32,7 @@ class ImageRepoImpl implements ImageRepo {
       }
       return right(images);
     } catch (e) {
-      return left(ServerFailure());
+      return left(ServerFailure(e.toString()));
     }
   }
 
