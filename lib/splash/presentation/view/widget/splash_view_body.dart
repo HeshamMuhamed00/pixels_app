@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pixels_app/home/data/repo/image_repo.dart';
+import 'package:pixels_app/home/presentation/manager/image_cubit/cubit/image_cubit.dart';
 import 'package:video_player/video_player.dart';
 import 'package:pixels_app/home/presentation/view/home_view.dart';
 
@@ -45,7 +48,10 @@ class SplashViewBodyState extends State<SplashViewBody> {
       type: PageTransitionType.bottomToTopJoined,
       childCurrent:
           this.build(context), // Using the current widget's build method
-      child: const HomeView(),
+      child: BlocProvider(create: (BuildContext context) { 
+        ImageCubit()
+       },
+      child: const HomeView()),
     );
   }
 
