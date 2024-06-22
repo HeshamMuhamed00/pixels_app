@@ -8,7 +8,7 @@ final class ImageInitial extends ImageState {}
 final class ImageLoading extends ImageState {}
 
 final class ImageSuccess extends ImageState {
-  final List<ImageModels> images;
+  final List<ImageModel> images;
 
   ImageSuccess(this.images);
 }

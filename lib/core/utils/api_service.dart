@@ -8,9 +8,11 @@ class ApiService {
   ApiService(this._dio) {
     _dio.options.headers['Authorization'] = _apiKey;
   }
+
   Future<List<dynamic>> get({required String endPoint}) async {
     var response = await _dio.get('$_baseUrl$endPoint');
 
-    return response.data;
+    // Assuming response.data['photos'] is the correct path to the list
+    return response.data['photos'] as List<dynamic>;
   }
 }

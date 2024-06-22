@@ -11,7 +11,7 @@ class ImageRepoImpl implements ImageRepo {
   ImageRepoImpl(this.apiService);
 
   @override
-  Future<Either<Failure, List<ImageModels>>> downloadImages(
+  Future<Either<Failure, List<ImageModel>>> downloadImages(
       {required String imageUrl,
       required int imageId,
       required BuildContext context}) {
@@ -20,16 +20,13 @@ class ImageRepoImpl implements ImageRepo {
   }
 
   @override
-  Future<Either<Failure, List<ImageModels>>> fetchImages(
+  Future<Either<Failure, List<ImageModel>>> fetchImages(
       {required int? pageNumber}) async {
     try {
       var data = await apiService.get(
           endPoint: 'curated?per_page=80&page=$pageNumber');
-      List<ImageModels> images = [];
-
-      for (int i = 0; i < data.length; i++) {
-        images.add(ImageModels.fromJson(data[i]));
-      }
+      List<ImageModel> images =
+          data.map((json) => ImageModel.fromJson(json)).toList();
       return right(images);
     } catch (e) {
       return left(ServerFailure(e.toString()));
@@ -37,7 +34,7 @@ class ImageRepoImpl implements ImageRepo {
   }
 
   @override
-  Future<Either<Failure, List<ImageModels>>> fetchImagesBySearch(
+  Future<Either<Failure, List<ImageModel>>> fetchImagesBySearch(
       {required String query}) {
     // TODO: implement fetchImagesBySearch
     throw UnimplementedError();
