@@ -42,7 +42,10 @@ class CustomGridView extends StatelessWidget {
                             duration: const Duration(milliseconds: 250),
                             type: PageTransitionType.scale,
                             alignment: Alignment.bottomLeft,
-                            child: const ImageDetails(),
+                            child: ImageDetails(
+                              imageUrl: state.images[index].imagePotraitPath,
+                              imageId: state.images[index].imageID,
+                            ),
                           ),
                         );
 

@@ -3,7 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:pixels_app/home/presentation/view/widget/arrow_back_image_details.dart';
 
 class ImageDetails extends StatelessWidget {
-  const ImageDetails({super.key});
+  const ImageDetails(
+      {super.key, required this.imageUrl, required this.imageId});
+
+  final String imageUrl;
+  final int imageId;
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +15,8 @@ class ImageDetails extends StatelessWidget {
       body: Stack(
         children: [
           SizedBox.expand(
-            child: Image.asset(
-              'assets/pexels.jpg',
+            child: Image.network(
+              imageUrl,
               fit: BoxFit.cover,
             ),
           ),
