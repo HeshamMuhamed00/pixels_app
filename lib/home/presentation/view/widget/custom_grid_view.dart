@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:page_transition/page_transition.dart';
@@ -46,7 +48,9 @@ class CustomGridView extends StatelessWidget {
 
                         // GoRouter.of(context).push('/imageDetails');
                       },
-                      child: const GridItem());
+                      child: GridItem(
+                        imageUrl: state.images[index].imagePotraitPath,
+                      ));
                 },
               ),
             ),

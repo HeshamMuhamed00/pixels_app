@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class GridItem extends StatelessWidget {
   const GridItem({
     super.key,
+    required this.imageUrl,
   });
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +16,9 @@ class GridItem extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
-        child: const FittedBox(
+        child: FittedBox(
           fit: BoxFit.fill,
-          child: Image(
-            image: AssetImage('assets/pexels.jpg'),
-          ),
+          child: Image.network(imageUrl),
         ),
       ),
     );
