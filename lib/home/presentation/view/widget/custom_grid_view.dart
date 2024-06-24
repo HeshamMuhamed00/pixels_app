@@ -6,6 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pixels_app/core/functions/navigate_to_imagedetails.dart';
 import 'package:pixels_app/core/widget/custom_error.dart';
 import 'package:pixels_app/home/presentation/manager/image_cubit/cubit/image_cubit.dart';
+import 'package:pixels_app/home/presentation/view/widget/custom_grid_view_fading_indcator.dart';
 import 'package:pixels_app/home/presentation/view/widget/grid_item.dart';
 
 class CustomGridView extends StatefulWidget {
@@ -83,7 +84,9 @@ class _CustomGridViewState extends State<CustomGridView> {
         } else if (state is ImageFailure) {
           return CustomError(errMessage: state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CustomGridViewFadingIndcator(),
+          );
         }
       },
     );
