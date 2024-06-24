@@ -21,7 +21,7 @@ class ImageRepoImpl implements ImageRepo {
 
   @override
   Future<Either<Failure, List<ImageModel>>> fetchImages(
-      {required int? pageNumber}) async {
+      {int pageNumber = 0}) async {
     try {
       var data = await apiService.get(
           endPoint: 'curated?per_page=80&page=$pageNumber');

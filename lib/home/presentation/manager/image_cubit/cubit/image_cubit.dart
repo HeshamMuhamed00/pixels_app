@@ -9,15 +9,24 @@ class ImageCubit extends Cubit<ImageState> {
   ImageCubit(this.imageRepo) : super(ImageInitial());
 
   final ImageRepo imageRepo;
-  int pageNumber = 1;
-  Future<void> fetchImages() async {
-    emit(ImageLoading());
+
+  final List<ImageModel> _images = [];
+  bool isLoading = false;
+
+  Future<void> fetchImages({int pageNumber = 1}) async {
+    if (isLoading) return;
+    isLoading = true;
+
+    if (pageNumber == 1) emit(ImageLoading());
 
     var result = await imageRepo.fetchImages(pageNumber: pageNumber);
     result.fold((failure) {
       emit(ImageFailure(failure.errMessage));
-    }, (images) {
-      emit(ImageSuccess(images));
+    }, (newImages) {
+      _images.addAll(newImages);
+      emit(ImageSuccess(List<ImageModel>.from(_images)));
     });
+
+    isLoading = false;
   }
 }

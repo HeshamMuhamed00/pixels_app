@@ -3,14 +3,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:pixels_app/core/functions/navigate_to_imagedetails.dart';
 import 'package:pixels_app/core/widget/custom_error.dart';
 import 'package:pixels_app/home/presentation/manager/image_cubit/cubit/image_cubit.dart';
 import 'package:pixels_app/home/presentation/view/widget/grid_item.dart';
-import 'package:pixels_app/home/presentation/view/widget/image_details.dart';
 
-class CustomGridView extends StatelessWidget {
+class CustomGridView extends StatefulWidget {
   const CustomGridView({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _CustomGridViewState();
+}
+
+class _CustomGridViewState extends State<CustomGridView> {
+  late ScrollController _scrollController;
+  var nextPage = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
+    // Fetch initial images
+    BlocProvider.of<ImageCubit>(context).fetchImages(pageNumber: nextPage);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    var currentPosition = _scrollController.position.pixels;
+    var maxScrollLength = _scrollController.position.maxScrollExtent;
+    if (currentPosition >= 0.7 * maxScrollLength) {
+      BlocProvider.of<ImageCubit>(context).fetchImages(pageNumber: ++nextPage);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,41 +51,32 @@ class CustomGridView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(left: 6, right: 6),
             child: GridView.custom(
+              controller: _scrollController,
               gridDelegate: SliverWovenGridDelegate.count(
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 10,
-                  pattern: [
-                    const WovenGridTile(0.8),
-                    const WovenGridTile(
-                      10 / 15,
-                      crossAxisRatio: 1,
-                      alignment: AlignmentDirectional.centerEnd,
-                    ),
-                  ],
-                  crossAxisCount: 2),
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 10,
+                pattern: [
+                  const WovenGridTile(0.8),
+                  const WovenGridTile(
+                    10 / 15,
+                    crossAxisRatio: 1,
+                    alignment: AlignmentDirectional.centerEnd,
+                  ),
+                ],
+                crossAxisCount: 2,
+              ),
               childrenDelegate: SliverChildBuilderDelegate(
                 (context, index) {
                   return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            duration: const Duration(milliseconds: 250),
-                            type: PageTransitionType.scale,
-                            alignment: Alignment.bottomLeft,
-                            child: ImageDetails(
-                              imageUrl: state.images[index].imagePotraitPath,
-                              imageId: state.images[index].imageID,
-                            ),
-                          ),
-                        );
-
-                        // GoRouter.of(context).push('/imageDetails');
-                      },
-                      child: GridItem(
-                        imageUrl: state.images[index].imagePotraitPath,
-                      ));
+                    onTap: () {
+                      navigateToPreviewImage(context, state, index);
+                    },
+                    child: GridItem(
+                      imageUrl: state.images[index].imagePotraitPath,
+                    ),
+                  );
                 },
+                childCount: state.images.length,
               ),
             ),
           );
