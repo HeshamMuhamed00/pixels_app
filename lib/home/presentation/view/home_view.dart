@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixels_app/core/widget/bottom_nav_animated_icons.dart';
 import 'package:pixels_app/home/presentation/view/widget/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -7,6 +8,9 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBody: true,
+      bottomNavigationBar: BottomNavAnimatedIcons(),
       body: HomeViewBody(),
     );
   }
