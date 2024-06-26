@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:video_player/video_player.dart';
-import 'package:pixels_app/home/presentation/view/home_view.dart';
+import 'package:pixels_app/Features/home/presentation/view/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});

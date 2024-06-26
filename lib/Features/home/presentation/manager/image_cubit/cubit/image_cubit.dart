@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:pixels_app/home/data/model/images_model.dart';
-import 'package:pixels_app/home/data/repo/image_repo.dart';
+import 'package:pixels_app/Features/home/data/model/images_model.dart';
+import 'package:pixels_app/Features/home/data/repo/image_repo.dart';
 
 part 'image_state.dart';
 

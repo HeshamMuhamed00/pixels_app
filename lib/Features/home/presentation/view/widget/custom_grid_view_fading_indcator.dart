@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pixels_app/core/widget/custom_fading_animation.dart';
-import 'package:pixels_app/home/presentation/view/widget/custom_grid_item_fading_indicator.dart';
+import 'package:pixels_app/Features/home/presentation/view/widget/custom_grid_item_fading_indicator.dart';
 
 class CustomGridViewFadingIndcator extends StatelessWidget {
   const CustomGridViewFadingIndcator({super.key});

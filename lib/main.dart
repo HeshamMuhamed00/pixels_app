@@ -2,9 +2,9 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pixels_app/core/utils/service_locator.dart';
-import 'package:pixels_app/home/data/repo/image_repo_impl.dart';
-import 'package:pixels_app/home/presentation/manager/image_cubit/cubit/image_cubit.dart';
-import 'package:pixels_app/splash/presentation/view/splash_view.dart';
+import 'package:pixels_app/Features/home/data/repo/image_repo_impl.dart';
+import 'package:pixels_app/Features/home/presentation/manager/image_cubit/cubit/image_cubit.dart';
+import 'package:pixels_app/Features/splash/presentation/view/splash_view.dart';
 
 void main() {
   setup();

@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:pixels_app/core/error/failure.dart';
 import 'package:pixels_app/core/utils/api_service.dart';
-import 'package:pixels_app/home/data/model/images_model.dart';
-import 'package:pixels_app/home/data/repo/image_repo.dart';
+import 'package:pixels_app/Features/home/data/model/images_model.dart';
+import 'package:pixels_app/Features/home/data/repo/image_repo.dart';
 
 class ImageRepoImpl implements ImageRepo {
   final ApiService apiService;

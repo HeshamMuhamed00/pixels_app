@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:pixels_app/core/error/failure.dart';
-import 'package:pixels_app/home/data/model/images_model.dart';
+import 'package:pixels_app/Features/home/data/model/images_model.dart';
 
 abstract class ImageRepo {
   Future<Either<Failure, List<ImageModel>>> fetchImages({int pageNumber = 0});

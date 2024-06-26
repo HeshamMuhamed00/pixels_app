@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pixels_app/home/presentation/manager/image_cubit/cubit/image_cubit.dart';
-import 'package:pixels_app/home/presentation/view/widget/image_details.dart';
+import 'package:pixels_app/Features/home/presentation/manager/image_cubit/cubit/image_cubit.dart';
+import 'package:pixels_app/Features/home/presentation/view/widget/image_details.dart';
 
 void navigateToPreviewImage(
     BuildContext context, ImageSuccess state, int index) {
