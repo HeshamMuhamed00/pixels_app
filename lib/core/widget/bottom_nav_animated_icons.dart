@@ -6,7 +6,14 @@ import 'package:pixels_app/core/widget/selected_animated_bar.dart';
 import 'package:rive/rive.dart';
 
 class BottomNavAnimatedIcons extends StatefulWidget {
-  const BottomNavAnimatedIcons({super.key});
+  final int selectedIndex;
+  final ValueChanged<int> onItemTapped;
+
+  const BottomNavAnimatedIcons({
+    super.key,
+    required this.selectedIndex,
+    required this.onItemTapped,
+  });
 
   @override
   State<BottomNavAnimatedIcons> createState() => _BottomNavAnimatedIconsState();
@@ -15,7 +22,6 @@ class BottomNavAnimatedIcons extends StatefulWidget {
 class _BottomNavAnimatedIconsState extends State<BottomNavAnimatedIcons> {
   List<SMIBool> riveIconInput = [];
   List<StateMachineController?> controllers = [];
-  int selectedNavIndex = 0;
 
   void animateTheIcon(int index) {
     riveIconInput[index].change(true);
@@ -63,19 +69,17 @@ class _BottomNavAnimatedIconsState extends State<BottomNavAnimatedIcons> {
             return GestureDetector(
               onTap: () {
                 animateTheIcon(index);
-                setState(() {
-                  selectedNavIndex = index; // Updated the assignment
-                });
+                widget.onItemTapped(index);
               },
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 SelectedAnimatedBar(
-                  isActive: selectedNavIndex == index,
+                  isActive: widget.selectedIndex == index,
                 ),
                 SizedBox(
                   height: 28,
                   width: 36,
                   child: Opacity(
-                    opacity: selectedNavIndex == index ? 1 : 0.5,
+                    opacity: widget.selectedIndex == index ? 1 : 0.5,
                     child: RiveAnimation.asset(
                       riveIcon.src,
                       artboard: riveIcon.artboard,
