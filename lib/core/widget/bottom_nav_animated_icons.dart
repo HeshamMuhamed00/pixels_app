@@ -64,35 +64,41 @@ class _BottomNavAnimatedIconsState extends State<BottomNavAnimatedIcons> {
             ]),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(bottomNavItem.length, (index) {
-            final riveIcon = bottomNavItem[index].rive;
-            return GestureDetector(
-              onTap: () {
-                animateTheIcon(index);
-                widget.onItemTapped(index);
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                SelectedAnimatedBar(
-                  isActive: widget.selectedIndex == index,
-                ),
-                SizedBox(
-                  height: 28,
-                  width: 36,
-                  child: Opacity(
-                    opacity: widget.selectedIndex == index ? 1 : 0.5,
-                    child: RiveAnimation.asset(
-                      riveIcon.src,
-                      artboard: riveIcon.artboard,
-                      onInit: (artboard) {
-                        riveOnInit(artboard,
-                            stateMachineName: riveIcon.stateMachineName);
-                      },
+          children: List.generate(
+            bottomNavItem.length,
+            (index) {
+              final riveIcon = bottomNavItem[index].rive;
+              return GestureDetector(
+                onTap: () {
+                  animateTheIcon(index);
+                  widget.onItemTapped(index);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SelectedAnimatedBar(
+                      isActive: widget.selectedIndex == index,
                     ),
-                  ),
+                    SizedBox(
+                      height: 28,
+                      width: 36,
+                      child: Opacity(
+                        opacity: widget.selectedIndex == index ? 1 : 0.5,
+                        child: RiveAnimation.asset(
+                          riveIcon.src,
+                          artboard: riveIcon.artboard,
+                          onInit: (artboard) {
+                            riveOnInit(artboard,
+                                stateMachineName: riveIcon.stateMachineName);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ]),
-            );
-          }),
+              );
+            },
+          ),
         ),
       ),
     );
