@@ -16,12 +16,14 @@ class SearchGridView extends StatelessWidget {
       crossAxisCount: 2,
       childAspectRatio: 1.6,
       children: const [
-        SearchGridItem(),
-        SearchGridItem(),
-        SearchGridItem(),
-        SearchGridItem(),
-        SearchGridItem(),
-        SearchGridItem(),
+        SearchGridItem(categoryName: 'Beach', image: 'assets/beach.png'),
+        SearchGridItem(
+            categoryName: 'Black & White', image: 'assets/black_and_white.png'),
+        SearchGridItem(categoryName: 'Car', image: 'assets/car.png'),
+        SearchGridItem(categoryName: 'Diving', image: 'assets/diving.png'),
+        SearchGridItem(categoryName: 'Forest', image: 'assets/forest.png'),
+        SearchGridItem(
+            categoryName: 'Landscape', image: 'assets/landscape.png'),
       ],
     );
   }

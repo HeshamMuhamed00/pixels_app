@@ -3,8 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class SearchGridItem extends StatelessWidget {
-  const SearchGridItem({super.key, this.onTap});
-  // final String categoryName , image;
+  const SearchGridItem(
+      {super.key, this.onTap, required this.categoryName, required this.image});
+  final String categoryName, image;
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,8 @@ class SearchGridItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: AssetImage('assets/car.png'),
+                image: DecorationImage(
+                  image: AssetImage(image),
                   fit: BoxFit.cover, // Ensures the image covers the container
                 ),
               ),
@@ -39,10 +40,10 @@ class SearchGridItem extends StatelessWidget {
               ),
             ),
           ),
-          const Center(
+          Center(
             child: Text(
-              'car',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              categoryName,
+              style: const TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
         ],
