@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_view_item.dart';
 
-class SearchGridView extends StatelessWidget {
-  const SearchGridView({super.key});
+class SearchGridIdeasCategory extends StatelessWidget {
+  const SearchGridIdeasCategory({super.key});
 
   @override
   Widget build(BuildContext context) {

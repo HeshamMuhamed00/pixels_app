@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_view.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_ideas_category.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_populer_category.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
@@ -26,19 +27,19 @@ class SearchViewBody extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const SearchGridView(),
+              const SearchGridIdeasCategory(),
               const SizedBox(
                 height: 30,
               ),
               const Text(
                 textAlign: TextAlign.center,
-                'Ideas for you',
+                'Populer on pixels',
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
               const SizedBox(
                 height: 14,
               ),
-              const SearchGridView(),
+              const SearchGridPopulerCategory(),
             ],
           ),
         ),
