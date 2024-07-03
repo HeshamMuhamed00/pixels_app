@@ -9,21 +9,23 @@ class SearchGridView extends StatelessWidget {
     return GridView.count(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      primary: true,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       crossAxisCount: 2,
-      childAspectRatio: 1.6,
+      childAspectRatio: 1.8,
       children: const [
-        SearchGridItem(categoryName: 'Beach', image: 'assets/beach.png'),
+        SearchGridItem(categoryName: 'Beach', image: 'assets/beach.jpg'),
         SearchGridItem(
-            categoryName: 'Black & White', image: 'assets/black_and_white.png'),
-        SearchGridItem(categoryName: 'Car', image: 'assets/car.png'),
-        SearchGridItem(categoryName: 'Diving', image: 'assets/diving.png'),
-        SearchGridItem(categoryName: 'Forest', image: 'assets/forest.png'),
+            categoryName: 'Black & White', image: 'assets/black_and_white.jpg'),
+        SearchGridItem(categoryName: 'Car', image: 'assets/car.jpg'),
+        SearchGridItem(categoryName: 'Diving', image: 'assets/diving.jpg'),
+        SearchGridItem(categoryName: 'Forest', image: 'assets/forest.jpg'),
         SearchGridItem(
-            categoryName: 'Landscape', image: 'assets/landscape.png'),
+            categoryName: 'Landscape', image: 'assets/landscape.jpg'),
+        SearchGridItem(categoryName: 'Fitness', image: 'assets/Fitness.jpg'),
+        SearchGridItem(
+            categoryName: '4K Wallpaper', image: 'assets/4k_WallPaper.jpg'),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_view.dart';
 
@@ -6,24 +7,41 @@ class SearchViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        SizedBox(
-          height: 50,
+    return CustomScrollView(
+      primary: true,
+      physics: const ScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              const SizedBox(
+                height: 50,
+              ),
+              const Text(
+                textAlign: TextAlign.center,
+                'Ideas for you',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const SearchGridView(),
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                textAlign: TextAlign.center,
+                'Ideas for you',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+              const SearchGridView(),
+            ],
+          ),
         ),
-        Text(
-          'Ideas for you',
-          style: TextStyle(color: Colors.white, fontSize: 18),
-        ),
-        SizedBox(
-          height: 12,
-        ),
-        Expanded(child: SearchGridView()),
-        Text(
-          'Ideas for you',
-          style: TextStyle(color: Colors.white, fontSize: 18),
-        ),
-        Expanded(child: SearchGridView()),
       ],
     );
   }
