@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/custom_text_form_feild.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_ideas_category.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_populer_category.dart';
 
@@ -18,6 +19,15 @@ class SearchViewBody extends StatelessWidget {
             [
               const SizedBox(
                 height: 50,
+              ),
+              const CustomTextFormFeild(
+                hintText: 'Search for photo',
+                prefixIcon: Icon(
+                  Icons.search_outlined,
+                ),
+              ),
+              const SizedBox(
+                height: 18,
               ),
               const Text(
                 textAlign: TextAlign.center,

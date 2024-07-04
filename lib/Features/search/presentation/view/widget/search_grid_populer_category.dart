@@ -9,7 +9,7 @@ class SearchGridPopulerCategory extends StatelessWidget {
     return GridView.count(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 30),
+      padding: const EdgeInsets.only(left: 14, right: 14, bottom: 90),
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       crossAxisCount: 2,
