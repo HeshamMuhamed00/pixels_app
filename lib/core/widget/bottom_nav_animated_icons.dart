@@ -4,6 +4,7 @@ import 'package:pixels_app/core/utils/constants.dart';
 import 'package:pixels_app/core/utils/model/nav_item_model.dart';
 import 'package:pixels_app/core/widget/selected_animated_bar.dart';
 import 'package:rive/rive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomNavAnimatedIcons extends StatefulWidget {
   final int selectedIndex;
@@ -22,6 +23,25 @@ class BottomNavAnimatedIcons extends StatefulWidget {
 class _BottomNavAnimatedIconsState extends State<BottomNavAnimatedIcons> {
   List<SMIBool> riveIconInput = [];
   List<StateMachineController?> controllers = [];
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSelectedIndex();
+  }
+
+  void _loadSelectedIndex() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedIndex = prefs.getInt('selectedIndex') ?? 0;
+    });
+  }
+
+  void _saveSelectedIndex(int index) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('selectedIndex', index);
+  }
 
   void animateTheIcon(int index) {
     riveIconInput[index].change(true);
@@ -72,18 +92,22 @@ class _BottomNavAnimatedIconsState extends State<BottomNavAnimatedIcons> {
                 onTap: () {
                   animateTheIcon(index);
                   widget.onItemTapped(index);
+                  _saveSelectedIndex(index);
+                  setState(() {
+                    _selectedIndex = index;
+                  });
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SelectedAnimatedBar(
-                      isActive: widget.selectedIndex == index,
+                      isActive: _selectedIndex == index,
                     ),
                     SizedBox(
                       height: 28,
                       width: 36,
                       child: Opacity(
-                        opacity: widget.selectedIndex == index ? 1 : 0.5,
+                        opacity: _selectedIndex == index ? 1 : 0.5,
                         child: RiveAnimation.asset(
                           riveIcon.src,
                           artboard: riveIcon.artboard,

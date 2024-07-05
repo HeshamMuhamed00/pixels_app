@@ -35,8 +35,15 @@ class ImageRepoImpl implements ImageRepo {
 
   @override
   Future<Either<Failure, List<ImageModel>>> fetchImagesBySearch(
-      {required String query}) {
-    // TODO: implement fetchImagesBySearch
-    throw UnimplementedError();
+      {required String query}) async {
+    try {
+      var data =
+          await apiService.get(endPoint: 'search?query=$query&per_page=80');
+      List<ImageModel> images =
+          data.map((json) => ImageModel.fromJson(json)).toList();
+      return right(images);
+    } on Exception catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
   }
 }
