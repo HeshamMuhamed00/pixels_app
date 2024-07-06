@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pixels_app/Features/home/presentation/view/home_view.dart';
 import 'package:pixels_app/Features/search/presentation/view/search_view.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/search_view_body.dart';
 import 'bottom_nav_animated_icons.dart'; // Adjust the import based on your file structure
 
 class MainNavigation extends StatefulWidget {
@@ -16,7 +17,7 @@ class _MainNavigationState extends State<MainNavigation> {
   static const List<Widget> _pages = <Widget>[
     HomeView(),
     SearchView(),
-    // Add other pages here
+    SearchViewBody(), // Add other pages here
   ];
 
   void _onItemTapped(int index) {
