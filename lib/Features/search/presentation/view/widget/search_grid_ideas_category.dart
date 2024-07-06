@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_view_item.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/search_category_grid_view_item.dart';
 
 class SearchGridIdeasCategory extends StatelessWidget {
   const SearchGridIdeasCategory({super.key});
@@ -15,16 +15,20 @@ class SearchGridIdeasCategory extends StatelessWidget {
       crossAxisCount: 2,
       childAspectRatio: 1.8,
       children: const [
-        SearchGridItem(categoryName: 'Beach', image: 'assets/beach.jpg'),
-        SearchGridItem(
+        SearchCategoryGridItem(
+            categoryName: 'Beach', image: 'assets/beach.jpg'),
+        SearchCategoryGridItem(
             categoryName: 'Black & White', image: 'assets/black_and_white.jpg'),
-        SearchGridItem(categoryName: 'Car', image: 'assets/car.jpg'),
-        SearchGridItem(categoryName: 'Diving', image: 'assets/diving.jpg'),
-        SearchGridItem(categoryName: 'Forest', image: 'assets/forest.jpg'),
-        SearchGridItem(
+        SearchCategoryGridItem(categoryName: 'Car', image: 'assets/car.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Diving', image: 'assets/diving.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Forest', image: 'assets/forest.jpg'),
+        SearchCategoryGridItem(
             categoryName: 'Landscape', image: 'assets/landscape.jpg'),
-        SearchGridItem(categoryName: 'Fitness', image: 'assets/Fitness.jpg'),
-        SearchGridItem(
+        SearchCategoryGridItem(
+            categoryName: 'Fitness', image: 'assets/Fitness.jpg'),
+        SearchCategoryGridItem(
             categoryName: '4K Wallpaper', image: 'assets/4k_WallPaper.jpg'),
       ],
     );

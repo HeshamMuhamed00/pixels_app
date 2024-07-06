@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class SearchGridItem extends StatelessWidget {
-  const SearchGridItem(
+class SearchCategoryGridItem extends StatelessWidget {
+  const SearchCategoryGridItem(
       {super.key, this.onTap, required this.categoryName, required this.image});
   final String categoryName, image;
   final void Function()? onTap;
@@ -14,7 +14,9 @@ class SearchGridItem extends StatelessWidget {
       child: Stack(
         children: [
           GestureDetector(
-            onTap: onTap,
+            onTap: (){
+              Navigator.push(context, )
+            },
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_view_item.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/search_category_grid_view_item.dart';
 
 class SearchGridPopulerCategory extends StatelessWidget {
   const SearchGridPopulerCategory({super.key});
@@ -15,14 +15,20 @@ class SearchGridPopulerCategory extends StatelessWidget {
       crossAxisCount: 2,
       childAspectRatio: 1.8,
       children: const [
-        SearchGridItem(categoryName: 'Animal', image: 'assets/animal.jpg'),
-        SearchGridItem(categoryName: 'Autumn', image: 'assets/autumn.jpg'),
-        SearchGridItem(categoryName: 'City', image: 'assets/city.jpg'),
-        SearchGridItem(categoryName: 'Night', image: 'assets/night.jpg'),
-        SearchGridItem(categoryName: 'Portrait', image: 'assets/portrait.jpg'),
-        SearchGridItem(categoryName: 'Rain', image: 'assets/rain.jpg'),
-        SearchGridItem(categoryName: 'Summer', image: 'assets/summer.jpg'),
-        SearchGridItem(categoryName: 'Sunset ', image: 'assets/sunset.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Animal', image: 'assets/animal.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Autumn', image: 'assets/autumn.jpg'),
+        SearchCategoryGridItem(categoryName: 'City', image: 'assets/city.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Night', image: 'assets/night.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Portrait', image: 'assets/portrait.jpg'),
+        SearchCategoryGridItem(categoryName: 'Rain', image: 'assets/rain.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Summer', image: 'assets/summer.jpg'),
+        SearchCategoryGridItem(
+            categoryName: 'Sunset ', image: 'assets/sunset.jpg'),
       ],
     );
   }
