@@ -35,10 +35,10 @@ class ImageRepoImpl implements ImageRepo {
 
   @override
   Future<Either<Failure, List<ImageModel>>> fetchImagesBySearch(
-      {required String query}) async {
+      {required String query, int pageNumber = 0}) async {
     try {
-      var data =
-          await apiService.get(endPoint: 'search?query=$query&per_page=80');
+      var data = await apiService.get(
+          endPoint: 'search?query=$query&per_page=80&page=$pageNumber');
       List<ImageModel> images =
           data.map((json) => ImageModel.fromJson(json)).toList();
       return right(images);

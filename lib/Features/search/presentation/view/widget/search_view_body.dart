@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixels_app/Features/home/presentation/view/widget/custom_grid_view_fading_indcator.dart';
+import 'package:pixels_app/Features/search/presentation/manager/search_cubit/cubit/search_cubit.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/custom_text_form_feild.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_view.dart';
+import 'package:pixels_app/core/widget/custom_error.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
@@ -46,12 +48,23 @@ class SearchViewBody extends StatelessWidget {
               height: 14,
             ),
           ),
-          const SliverPadding(
+          SliverPadding(
             padding: EdgeInsets.zero,
             sliver: SliverToBoxAdapter(
-              child: SearchGridView(
-                imagePath: 'assets/test.jpg',
-              ),
+              child: BlocBuilder<SearchCubit, SearchState>(
+                  builder: (context, state) {
+                if (state is SearchSuccess) {
+                  return const SearchGridView(
+                    imagePath: 'assets/test.jpg',
+                  );
+                } else if (state is SearchFailer) {
+                  return CustomError(errMessage: state.errMessage);
+                } else {
+                  return const Center(
+                    child: CustomGridViewFadingIndcator(),
+                  );
+                }
+              }),
             ),
           ),
         ],
