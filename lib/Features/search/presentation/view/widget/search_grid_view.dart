@@ -58,7 +58,7 @@ class _SearchGridViewState extends State<SearchGridView> {
               controller: _scrollController,
               padding: EdgeInsets.zero,
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const ScrollPhysics(),
               gridDelegate: SliverWovenGridDelegate.count(
                 mainAxisSpacing: 0,
                 crossAxisSpacing: 10,
@@ -73,13 +73,11 @@ class _SearchGridViewState extends State<SearchGridView> {
                 crossAxisCount: 2,
               ),
               childrenDelegate: SliverChildBuilderDelegate((context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    navigateToPreviewImagee(context, state, index);
-                  },
-                  child: SearchGridItem(
-                      imageUrl: state.images[index].imagePotraitPath),
-                );
+                return SearchGridItem(
+                    onTap: () {
+                      navigateToPreviewImagee(context, state, index);
+                    },
+                    imageUrl: state.images[index].imagePotraitPath);
               }, childCount: state.images.length),
             );
           } else {

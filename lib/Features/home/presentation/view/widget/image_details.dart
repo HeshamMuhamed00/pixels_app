@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pixels_app/Features/home/presentation/view/widget/arrow_back_image_details.dart';
 
 class ImageDetails extends StatelessWidget {
