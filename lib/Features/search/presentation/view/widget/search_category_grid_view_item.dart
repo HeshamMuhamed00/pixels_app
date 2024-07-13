@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:pixels_app/Features/search/presentation/view/widget/search_view_body.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/search_view_result.dart';
 
 class SearchCategoryGridItem extends StatelessWidget {
   const SearchCategoryGridItem(
@@ -28,7 +28,7 @@ class SearchCategoryGridItem extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const SearchViewBody()));
+                      builder: (context) => const SearchViewResult()));
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(

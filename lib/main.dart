@@ -30,7 +30,7 @@ class PixelsApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SearchCubit(getIt.get<ImageRepoImpl>())
-            ..fetchImagesBySearch(query: 'car'),
+            ..fetchImagesBySearch(query: 'cat'),
         ),
       ],
       child: MaterialApp(

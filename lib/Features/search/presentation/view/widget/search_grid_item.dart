@@ -18,7 +18,7 @@ class SearchGridItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: FittedBox(
           fit: BoxFit.fill,
-          child: Image.asset(imageUrl),
+          child: Image.network(imageUrl),
         ),
       ),
     );
