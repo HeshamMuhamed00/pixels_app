@@ -26,9 +26,13 @@ class SearchCategoryGridItem extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SearchViewResult()));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchViewResult(
+                    query: categoryName,
+                  ),
+                ),
+              );
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(
