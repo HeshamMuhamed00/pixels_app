@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CustomTextFormFeild extends StatefulWidget {
-  const CustomTextFormFeild({
+class CustomTextFeild extends StatefulWidget {
+  const CustomTextFeild({
     super.key,
     required this.hintText,
     required this.prefixIcon,
@@ -13,10 +13,10 @@ class CustomTextFormFeild extends StatefulWidget {
   final Function(String)? onSubmitted;
 
   @override
-  State<CustomTextFormFeild> createState() => _CustomTextFormFeildState();
+  State<CustomTextFeild> createState() => _CustomTextFeildState();
 }
 
-class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
+class _CustomTextFeildState extends State<CustomTextFeild> {
   TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {

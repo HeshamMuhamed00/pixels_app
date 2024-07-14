@@ -13,16 +13,23 @@ class MainNavigation extends StatefulWidget {
 
 class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 0;
+  String _searchQuery = '';
 
-  static const List<Widget> _pages = <Widget>[
-    HomeView(),
-    SearchView(),
-    SearchViewResultBody(), // Add other pages here
-  ];
+  static List<Widget> _pages(String query) => <Widget>[
+        const HomeView(),
+        SearchView(query: query),
+        const SearchViewResultBody(), // Add other pages here
+      ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  void updateSearchQuery(String query) {
+    setState(() {
+      _searchQuery = query;
     });
   }
 
@@ -33,7 +40,7 @@ class _MainNavigationState extends State<MainNavigation> {
       extendBody: true,
       body: IndexedStack(
         index: _selectedIndex,
-        children: _pages,
+        children: _pages(_searchQuery),
       ),
       bottomNavigationBar: BottomNavAnimatedIcons(
         selectedIndex: _selectedIndex,

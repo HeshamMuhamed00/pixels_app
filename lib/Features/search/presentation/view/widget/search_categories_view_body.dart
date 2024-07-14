@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/custom_text_form_feild.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_ideas_category.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_populer_category.dart';
+import 'package:pixels_app/Features/search/presentation/view/widget/search_view_result.dart';
 
 class SearchCategoriesViewBody extends StatelessWidget {
-  const SearchCategoriesViewBody({super.key});
+  const SearchCategoriesViewBody({super.key, required this.query});
+  final String query;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +22,22 @@ class SearchCategoriesViewBody extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              const CustomTextFormFeild(
+              CustomTextFeild(
                 hintText: 'Search for photo',
-                prefixIcon: Icon(
-                  Icons.search_outlined,
+                prefixIcon: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchViewResult(
+                          query: query,
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Icon(
+                    Icons.search_outlined,
+                  ),
                 ),
               ),
               const SizedBox(

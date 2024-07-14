@@ -59,7 +59,7 @@ class _SearchViewResultBodyState extends State<SearchViewResultBody> {
                             ),
                           ),
                           const Expanded(
-                            child: CustomTextFormFeild(
+                            child: CustomTextFeild(
                               hintText: 'Search pixels',
                               prefixIcon: Icon(Icons.search_outlined),
                             ),
