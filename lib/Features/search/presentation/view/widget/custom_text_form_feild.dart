@@ -1,31 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class CustomTextFormFeild extends StatelessWidget {
+class CustomTextFormFeild extends StatefulWidget {
   const CustomTextFormFeild({
     super.key,
     required this.hintText,
     required this.prefixIcon,
-    this.onChanged,
+    this.onSubmitted,
   });
   final String hintText;
   final Widget prefixIcon;
-  final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
 
+  @override
+  State<CustomTextFormFeild> createState() => _CustomTextFormFeildState();
+}
+
+class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
+  TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14),
-      child: TextFormField(
-        onChanged: onChanged,
+      child: TextField(
+        controller: textEditingController,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]'))
+        ],
+        onSubmitted: widget.onSubmitted,
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           iconColor: Colors.white,
           contentPadding: const EdgeInsets.all(8),
-          prefixIcon: prefixIcon,
+          prefixIcon: widget.prefixIcon,
           prefixIconColor: Colors.grey,
           filled: true,
           fillColor: const Color(0xff141414),
-          hintText: hintText,
+          hintText: widget.hintText,
           hintStyle: const TextStyle(color: Colors.grey),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
