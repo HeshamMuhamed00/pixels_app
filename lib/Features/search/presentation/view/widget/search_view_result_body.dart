@@ -27,6 +27,11 @@ class _SearchViewResultBodyState extends State<SearchViewResultBody> {
 
   NotificationListener<ScrollNotification> notificationScrollListener(
       BuildContext context) {
+    return scrollListener(context);
+  }
+
+  NotificationListener<ScrollNotification> scrollListener(
+      BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (ScrollNotification notification) {
         if (notification is ScrollUpdateNotification) {

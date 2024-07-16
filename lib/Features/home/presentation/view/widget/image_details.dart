@@ -19,9 +19,7 @@ class ImageDetails extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SafeArea(
-            child: ArrowBackImageDetails(),
-          ),
+          const ArrowBackAndDownloadIcon(),
         ],
       ),
     );
