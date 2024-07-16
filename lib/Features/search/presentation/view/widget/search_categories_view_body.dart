@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pixels_app/Features/search/presentation/manager/search_by_query_cubit/search_by_query_cubit.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/custom_text_form_feild.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_ideas_category.dart';
 import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_populer_category.dart';
-import 'package:pixels_app/Features/search/presentation/view/widget/search_view_result.dart';
+import 'package:pixels_app/core/functions/navigate_to_search_result.dart';
 
 class SearchCategoriesViewBody extends StatelessWidget {
   final TextEditingController _textEditingController;
@@ -34,8 +32,7 @@ class SearchCategoriesViewBody extends StatelessWidget {
                 prefixIcon: IconButton(
                   onPressed: () {
                     final query = _textEditingController.text;
-                    debugPrint(
-                        'Search icon pressed, query: $query'); // Debugging line
+
                     navigateToSearchResult(context, query);
                   },
                   icon: const Icon(Icons.search),
@@ -70,31 +67,5 @@ class SearchCategoriesViewBody extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  void navigateToSearchResult(BuildContext context, String query) {
-    query = query.trim(); // Trim whitespace
-    debugPrint('Query: $query'); // Debugging line to print the query
-    if (query.isNotEmpty) {
-      try {
-        BlocProvider.of<SearchByQueryCubit>(context)
-            .fetchImagesBySearch(query: query);
-        debugPrint('Bloc fetchImagesBySearch called'); // Debugging line
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SearchViewResult(query: query),
-          ),
-        );
-        debugPrint('Navigating to SearchViewResult'); // Debugging line
-      } catch (e) {
-        debugPrint('Error: $e'); // Print any errors
-      }
-    } else {
-      // Optionally show a message if the query is empty
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a search query')),
-      );
-    }
   }
 }

@@ -62,7 +62,14 @@ class _SearchViewResultBodyState extends State<SearchViewResultBody> {
                           Expanded(
                             child: CustomTextFeild(
                               hintText: 'Search pixels',
-                              prefixIcon: const Icon(Icons.search_outlined),
+                              prefixIcon: IconButton(
+                                onPressed: () {
+                                  final query = _textEditingController.text;
+                                  debugPrint(
+                                      'Search icon pressed, query: $query'); // Debugging line
+                                },
+                                icon: const Icon(Icons.search),
+                              ),
                               controller: _textEditingController,
                             ),
                           ),
