@@ -11,6 +11,7 @@ class SearchViewResultBody extends StatefulWidget {
 
 class _SearchViewResultBodyState extends State<SearchViewResultBody> {
   bool _isVisible = true;
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +59,11 @@ class _SearchViewResultBodyState extends State<SearchViewResultBody> {
                               color: Colors.grey,
                             ),
                           ),
-                          const Expanded(
+                          Expanded(
                             child: CustomTextFeild(
                               hintText: 'Search pixels',
-                              prefixIcon: Icon(Icons.search_outlined),
+                              prefixIcon: const Icon(Icons.search_outlined),
+                              controller: _textEditingController,
                             ),
                           ),
                         ],
