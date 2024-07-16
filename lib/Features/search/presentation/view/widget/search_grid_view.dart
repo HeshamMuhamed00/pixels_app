@@ -7,7 +7,9 @@ import 'package:pixels_app/Features/search/presentation/view/widget/search_grid_
 import 'package:pixels_app/core/functions/navigate_to_imagedetails.dart';
 
 class SearchGridView extends StatefulWidget {
-  const SearchGridView({super.key});
+  final String query;
+
+  const SearchGridView({super.key, required this.query});
 
   @override
   State<SearchGridView> createState() => _SearchGridViewState();
@@ -16,6 +18,7 @@ class SearchGridView extends StatefulWidget {
 class _SearchGridViewState extends State<SearchGridView> {
   late ScrollController _scrollController;
   var nextPage = 1;
+  String? currentQuery;
 
   @override
   void initState() {
@@ -23,8 +26,22 @@ class _SearchGridViewState extends State<SearchGridView> {
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
     // Fetch initial images
-    BlocProvider.of<SearchCubit>(context)
-        .fetchImagesBySearch(pageNumber: nextPage, query: 'cat');
+    currentQuery = widget.query;
+    BlocProvider.of<SearchCubit>(context).fetchImagesBySearch(
+        pageNumber: nextPage, query: widget.query, isNewQuery: true);
+  }
+
+  @override
+  void didUpdateWidget(SearchGridView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.query != widget.query) {
+      setState(() {
+        nextPage = 1; // Reset page number
+        currentQuery = widget.query;
+      });
+      BlocProvider.of<SearchCubit>(context).fetchImagesBySearch(
+          pageNumber: nextPage, query: widget.query, isNewQuery: true);
+    }
   }
 
   @override
@@ -37,9 +54,10 @@ class _SearchGridViewState extends State<SearchGridView> {
   void _onScroll() {
     var currentPosition = _scrollController.position.pixels;
     var maxScrollLength = _scrollController.position.maxScrollExtent;
-    if (currentPosition >= 0.7 * maxScrollLength) {
+    if (currentPosition >= 0.7 * maxScrollLength &&
+        !BlocProvider.of<SearchCubit>(context).isLoading) {
       BlocProvider.of<SearchCubit>(context)
-          .fetchImagesBySearch(pageNumber: ++nextPage, query: 'cat');
+          .fetchImagesBySearch(pageNumber: ++nextPage, query: currentQuery!);
     }
   }
 
@@ -49,7 +67,7 @@ class _SearchGridViewState extends State<SearchGridView> {
       padding: const EdgeInsets.only(left: 6, right: 6),
       child: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
-          if (state is SearchLoading) {
+          if (state is SearchLoading && nextPage == 1) {
             return const CustomGridViewFadingIndcator();
           } else if (state is SearchFailer) {
             return Center(child: Text(state.errMessage));

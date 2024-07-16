@@ -12,6 +12,13 @@ class SearchViewResultBody extends StatefulWidget {
 class _SearchViewResultBodyState extends State<SearchViewResultBody> {
   bool _isVisible = true;
   final TextEditingController _textEditingController = TextEditingController();
+  String _query = '';
+
+  void _onSearchSubmitted(String query) {
+    setState(() {
+      _query = query;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +57,12 @@ class _SearchViewResultBodyState extends State<SearchViewResultBody> {
                       padding: const EdgeInsets.symmetric(horizontal: 14),
                       child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: () {
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Icon(
+                            icon: const Icon(
                               Icons.arrow_back_ios,
                               color: Colors.grey,
                             ),
@@ -64,13 +72,13 @@ class _SearchViewResultBodyState extends State<SearchViewResultBody> {
                               hintText: 'Search pixels',
                               prefixIcon: IconButton(
                                 onPressed: () {
-                                  final query = _textEditingController.text;
-                                  debugPrint(
-                                      'Search icon pressed, query: $query'); // Debugging line
+                                  _onSearchSubmitted(
+                                      _textEditingController.text);
                                 },
                                 icon: const Icon(Icons.search),
                               ),
                               controller: _textEditingController,
+                              onSubmitted: _onSearchSubmitted,
                             ),
                           ),
                         ],
@@ -84,9 +92,9 @@ class _SearchViewResultBodyState extends State<SearchViewResultBody> {
               height: 14,
             ),
           ),
-          const SliverFillRemaining(
+          SliverFillRemaining(
             hasScrollBody: true,
-            child: SearchGridView(),
+            child: SearchGridView(query: _query),
           ),
         ],
       ),

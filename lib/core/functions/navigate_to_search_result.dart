@@ -8,7 +8,6 @@ void navigateToSearchResult(BuildContext context, String query) {
   if (query.isNotEmpty) {
     BlocProvider.of<SearchByQueryCubit>(context)
         .fetchImagesBySearch(query: query);
-    debugPrint('Bloc fetchImagesBySearch called'); // Debugging line
     Navigator.push(
       context,
       MaterialPageRoute(

@@ -8,15 +8,20 @@ part 'search_state.dart';
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this.imageRepo) : super(SearchInitial());
   final ImageRepo imageRepo;
-  final List<ImageModel> _images = [];
+  List<ImageModel> _images = [];
   bool isLoading = false;
 
   Future<void> fetchImagesBySearch(
-      {int pageNumber = 1, required String query}) async {
+      {int pageNumber = 1,
+      required String query,
+      bool isNewQuery = false}) async {
     if (isLoading) return;
     isLoading = true;
 
-    if (pageNumber == 1) emit(SearchLoading());
+    if (isNewQuery) {
+      _images = [];
+      emit(SearchLoading());
+    }
 
     var result = await imageRepo.fetchImagesBySearch(
         pageNumber: pageNumber, query: query);
